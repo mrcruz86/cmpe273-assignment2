@@ -10,6 +10,7 @@ import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 
 import de.spinscale.dropwizard.jobs.JobsBundle;
+import edu.sjsu.cmpe.procurement.api.resources.ProcurementResource;
 import edu.sjsu.cmpe.procurement.api.resources.RootResource;
 import edu.sjsu.cmpe.procurement.config.ProcurementServiceConfiguration;
 
@@ -39,7 +40,7 @@ public class ProcurementService extends Service<ProcurementServiceConfiguration>
     @Override
     public void run(ProcurementServiceConfiguration configuration,
 	    Environment environment) throws Exception {
-	jerseyClient = new JerseyClientBuilder()
+	final Client client = new JerseyClientBuilder()
 	.using(configuration.getJerseyClientConfiguration())
 	.using(environment).build();
 
@@ -52,6 +53,7 @@ public class ProcurementService extends Service<ProcurementServiceConfiguration>
 	 * ResourceConfig instance does not contain any root resource classes.
 	 */
 	environment.addResource(RootResource.class);
+	environment.addResource(new ProcurementResource(client));
 
 	String queueName = configuration.getStompQueueName();
 	String topicName = configuration.getStompTopicPrefix();

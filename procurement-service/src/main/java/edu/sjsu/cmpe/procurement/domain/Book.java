@@ -4,6 +4,7 @@ package edu.sjsu.cmpe.procurement.domain;
 public class Book {
     private long isbn;
     private String title;
+    private String category;
 
     // add more fields here
 
@@ -35,5 +36,20 @@ public class Book {
      */
     public void setTitle(String title) {
 	this.title = title;
+    }
+    
+    /**
+     * @return the category
+     */
+    public String getCategory() {
+    return category;
+    }
+    
+    /**
+     * @param category
+     *            the category to set
+     */
+    public void setCategory(String category) {
+    this.category = category;
     }
 }
