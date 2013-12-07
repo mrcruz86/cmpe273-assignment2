@@ -127,5 +127,19 @@ public class Book {
     public void setStatus(Status status) {
 	this.status = status;
     }
+    
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(String value) {
+    	if (value.equalsIgnoreCase("lost")) {
+    		this.status = Status.lost;
+    	} else if (value.equalsIgnoreCase("checkedout")) {
+    		this.status = Status.checkedout;
+    	} else {
+        	this.status = Status.available;
+        }
+    }
 
 }

@@ -41,13 +41,13 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 		configuration.getLibraryName(), queueName,
 		topicName);
 	// TODO: Apollo STOMP Broker URL and login
-
+	
 	/** Root API */
 	environment.addResource(RootResource.class);
 	/** Books APIs */
 	BookRepositoryInterface bookRepository = new BookRepository();
 	environment.addResource(new BookResource(bookRepository));
-
+	
 	/** UI Resources */
 	environment.addResource(new HomeResource(bookRepository));
     }
